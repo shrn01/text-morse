@@ -1,3 +1,24 @@
+def get_text(text):
+    words = text.strip().split('  ')
+    normal_text = ''
+    for i in words:
+        letters = i.split(' ')
+        for j in letters:
+            for key,value in morse_dict.items():
+                if value == j:
+                    normal_text += key
+        normal_text += ' '
+    return normal_text
+
+def get_morse(text):
+    morse_text = ''
+    for i in text:
+        if i != ' ':
+            morse_text += morse_dict[i] + ' '
+        else:
+            morse_text += ' '
+    return morse_text
+
 morse_dict = {
     "0": "-----",
     "1": ".----",
@@ -52,29 +73,20 @@ morse_dict = {
     "/": "-..-.",
 }
 
-print("enter input")
-text = input().lower()
 
 
-# MORSE TO TEXT
-if not (set(text) - {'.','-',' '}):
-    words = text.strip().split('  ')
-    normal_text = ''
-    for i in words:
-        letters = i.split(' ')
-        for j in letters:
-            for key,value in morse_dict.items():
-                if value == j:
-                    normal_text += key
-        normal_text += ' '
-    print(normal_text)
-        
-# TEXT TO MORSE
-else:
-    morse_text = ''
-    for i in text:
-        if i != ' ':
-            morse_text += morse_dict[i] + ' '
-        else:
-            morse_text += ' '
-    print(morse_text)
+while 1:
+    print("enter input")
+    text = input().lower()
+
+
+    # MORSE TO TEXT
+    if not (set(text) - {'.','-',' '}):
+        text = get_text(text)
+            
+    # TEXT TO MORSE
+    else:
+        text = get_morse(text)
+
+
+    print(text)
