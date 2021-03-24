@@ -1,3 +1,6 @@
+import winsound
+import time
+
 def get_text(text):
     words = text.strip().split('  ')
     normal_text = ''
@@ -75,18 +78,26 @@ morse_dict = {
 
 
 
-while 1:
-    print("enter input")
-    text = input().lower()
+# while 1:
+print("enter input")
+text = input().lower()
 
 
-    # MORSE TO TEXT
-    if not (set(text) - {'.','-',' '}):
-        text = get_text(text)
-            
-    # TEXT TO MORSE
-    else:
-        text = get_morse(text)
-
-
+# MORSE TO TEXT
+if not (set(text) - {'.','-',' '}):
+    text = get_text(text)
     print(text)
+        
+# TEXT TO MORSE
+else:
+    text = get_morse(text)
+    print(text)
+    for i in text:
+        if i == '.':
+            winsound.Beep(600,100)
+        elif i == "-":
+            winsound.Beep(600,250)
+        else:
+            time.sleep(1.0)
+
+    
